@@ -34,7 +34,7 @@ import axios from 'axios';
 
 window.axios = axios;
 window.axios.defaults.withCredentials = true;
-window.axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+window.axios.defaults.baseURL = import.meta.env.BASE_URL
 window.axios.defaults.timeout = 5000
 //window.axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
 window.axios.interceptors.response.use(
