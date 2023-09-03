@@ -176,7 +176,7 @@ const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: ComputerDesktopIcon, perm: 'restaurants.update'},
     { name: 'Live Orders', href: '/live-orders', icon: BoltIcon, perm: 'orders.view'},
     { name: 'Orders', href: '/orders', icon: ShoppingBagIcon, perm: 'orders.view'},
-    { name: 'restaurants', href: '/restaurants', icon: HomeIcon , perm: 'restaurants.view'},
+    { name: 'Restaurants', href: '/restaurants', icon: HomeIcon , perm: 'restaurants.view'},
     { name: 'Menu', href: '/menu', icon: DocumentDuplicateIcon, perm: 'menus.view'},
     { name: 'Menu Items', href: '/menu-items', icon: Squares2X2Icon, perm: 'menu_items.view'},
     { name: 'Tables', href: '/tables', icon: TableCellsIcon, perm: 'tables.view'},
