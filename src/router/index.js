@@ -40,13 +40,14 @@ import Login from "@/pages/auth/Login.vue";
 const {logout} = useAuth()
 
 const auth = (to, from, next) => {
-    //TODO: Uncomment this to allow authentication and authorization.
-
     if (localStorage.getItem('access_token')) {
         next()
         return
     }
-    next('/login')
+
+    //TODO: Uncomment this to allow authentication and authorization.
+    //next('/login')
+    next()
 }
 
 const logoutAndRedirect = async (to, from) => {
