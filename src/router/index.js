@@ -33,20 +33,21 @@ import SubscriptionDetails from "../pages/subscriptions/SubscriptionDetails.vue"
 import SubscriptionPayment from "../pages/subscriptions/SubscriptionPayment.vue";
 import VerifyOTP from "../pages/auth/VerifyOTP.vue";
 import MenuItemDetails from "../pages/menu_items/menu_item_details/MenuItemDetails.vue";
+import Login from "@/pages/auth/Login.vue";
 
 
 
 const {logout} = useAuth()
 
 const auth = (to, from, next) => {
-    //TODO: Uncomment this to allow authentication and authorization.
-
-    // if (localStorage.getItem('access_token')) {
+    if (localStorage.getItem('access_token')) {
         next()
-    //     return
-    // }
-    // next('/login')
-    //return
+        return
+    }
+
+    //TODO: Uncomment this to allow authentication and authorization.
+    //next('/login')
+    next()
 }
 
 const logoutAndRedirect = async (to, from) => {
@@ -62,6 +63,12 @@ const routes =[
         name : 'notFound',
         component : NotFound
     },
+    {
+        path : '/login',
+        name: 'login',
+        component: Login
+    },
+
     {
         path : '/auth/login/google/callback',
         name : 'google.callback',
