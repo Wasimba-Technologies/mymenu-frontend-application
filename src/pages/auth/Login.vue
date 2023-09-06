@@ -54,7 +54,7 @@
                             <div>
                                 <button type="submit"
                                         class="w-full btn-sm-submit" :class="{ 'opacity-70': isLoading }" :disabled="isLoading">
-                                    <LoadingSpinner />
+                                    <LoadingSpinner v-if="isLoading" />
                                     Sign in
                                 </button>
                             </div>
@@ -75,11 +75,7 @@
 import useAuth from "../../composables/auth";
 import LoadingSpinner from "../../components/LoadingSpinner.vue";
 import {provide} from "vue";
-
 const {isLoading, submitLogin, errors, loginForm} = useAuth()
-
-provide('isLoading', isLoading)
-
 if (localStorage.getItem('access_token')){
     window.location.pathname = '/dashboard'
 }
