@@ -24,9 +24,12 @@ export default function useAddons() {
     const getAddons = async (searchName) => {
         isFetching.value = true
         await axios.get(addonsURL.value+'?name='+searchName).then(response =>{
-            addons.value = response.data.data
-            paginationMetaData.value = response.data.meta
-            paginationLinks.value = response.data.links
+            addons.value = response.data
+
+            //TODO: Uncomment these if the api endpoint adds pagination
+            // addons.value = response.data.data
+            // paginationMetaData.value = response.data.meta
+            // paginationLinks.value = response.data.links
         }).catch(error =>{
             Toast.fire({
                 icon: 'error',
