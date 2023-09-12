@@ -4,7 +4,7 @@
       :types="types"
       :is-loading="isLoading"
       @submit-ingredient="changeIngredient"
-      form-description="Register your ingredients by filling the form below"
+      form-description="Update your ingredients by filling the form below"
       btn-message="Register"
       :errors="errors"
   />
@@ -38,8 +38,6 @@ const {
 
 const route = useRoute()
 
-const modified_menu_item = ref({})
-
 const changeIngredient = async () => {
   await updateIngredient(route.params.id);
 }
@@ -58,7 +56,6 @@ onMounted(async () => {
 })
 
 
-//utils.has_perm('menu_items.update')
 const {can} = useAbility()
 const {logout} = useAuth()
 const ability = inject(ABILITY_TOKEN)
