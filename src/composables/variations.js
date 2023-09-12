@@ -21,9 +21,12 @@ export default function useVariations() {
     const getVariations = async (searchName) => {
         isFetching.value = true
         await axios.get(variationsURL.value+'?name='+searchName).then(response =>{
-            variations.value = response.data.data
-            paginationMetaData.value = response.data.meta
-            paginationLinks.value = response.data.links
+            variations.value = response.data
+
+            //TODO: Uncomment this to allow pagination.
+            // variations.value = response.data.data
+            // paginationMetaData.value = response.data.meta
+            // paginationLinks.value = response.data.links
         }).catch(error =>{
             Toast.fire({
                 icon: 'error',
