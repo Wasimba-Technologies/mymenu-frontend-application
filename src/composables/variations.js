@@ -15,9 +15,6 @@ export default function useVariations() {
     const variationForm = reactive(
         {
             name: '',
-            price: '',
-            is_incrementing: true,
-            type: 'button'
         }
     )
 
