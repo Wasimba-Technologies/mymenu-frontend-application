@@ -24,9 +24,11 @@ export default function useIngredients() {
     const getIngredients = async (searchName) => {
         isFetching.value = true
         await axios.get(ingredientsURL.value+'?name='+searchName).then(response =>{
-            ingredients.value = response.data.data
-            paginationMetaData.value = response.data.meta
-            paginationLinks.value = response.data.links
+            ingredients.value = response.data //current implementation has no pagination
+
+            // ingredients.value = response.data.data
+            // paginationMetaData.value = response.data.meta
+            // paginationLinks.value = response.data.links
         }).catch(error =>{
             Toast.fire({
                 icon: 'error',
