@@ -153,16 +153,16 @@
 import {computed, inject, onMounted, ref} from 'vue'
 import {Dialog, DialogPanel, MenuButton, Menu, MenuItem, MenuItems, TransitionChild, TransitionRoot} from '@headlessui/vue'
 import {
-    HomeIcon,
-    Bars3Icon,
-    XMarkIcon,
-    ComputerDesktopIcon,
-    ShoppingBagIcon,
-    TableCellsIcon,
-    QrCodeIcon,
-    CreditCardIcon,
-    Squares2X2Icon,
-    DocumentDuplicateIcon, CogIcon, UsersIcon
+  HomeIcon,
+  Bars3Icon,
+  XMarkIcon,
+  ComputerDesktopIcon,
+  ShoppingBagIcon,
+  TableCellsIcon,
+  QrCodeIcon,
+  CreditCardIcon,
+  Squares2X2Icon,
+  DocumentDuplicateIcon, CogIcon, UsersIcon, PlusCircleIcon
 } from '@heroicons/vue/24/outline'
 
 import {useRoute} from "vue-router";
@@ -178,6 +178,7 @@ const navigation = [
     { name: 'Orders', href: '/orders', icon: ShoppingBagIcon, perm: 'orders.view'},
     { name: 'Restaurants', href: '/restaurants', icon: HomeIcon , perm: 'restaurants.view'},
     { name: 'Menu', href: '/menu', icon: DocumentDuplicateIcon, perm: 'menus.view'},
+    { name: 'Addons', href: '/addons', icon: PlusCircleIcon, perm: 'menus.view'},
     { name: 'Menu Items', href: '/menu-items', icon: Squares2X2Icon, perm: 'menu_items.view'},
     { name: 'Tables', href: '/tables', icon: TableCellsIcon, perm: 'tables.view'},
     { name: 'QR Builder', href: '/qr-builder', icon: QrCodeIcon, perm: 'qr_codes.view' },
