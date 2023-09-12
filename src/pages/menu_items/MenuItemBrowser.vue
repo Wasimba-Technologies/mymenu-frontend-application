@@ -158,7 +158,11 @@ const addToShoppingCart = (product) => {
         shopping_cart.value.push({
             'menu_item_id': product.id,
             'menu_item': product,
-            'qty': 1
+            'price': product.price,
+            'qty': 1,
+            'addons': [],
+             'ingredients': [],
+             'variations': []
         })
     } else {
         //Increment if Product exists and update state
