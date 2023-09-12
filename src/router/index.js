@@ -34,6 +34,9 @@ import SubscriptionPayment from "../pages/subscriptions/SubscriptionPayment.vue"
 import VerifyOTP from "../pages/auth/VerifyOTP.vue";
 import MenuItemDetails from "../pages/menu_items/menu_item_details/MenuItemDetails.vue";
 import Login from "@/pages/auth/Login.vue";
+import VariationValueIndex from "@/pages/variation_values/VariationValueIndex.vue";
+import VariationValueCreate from "@/pages/variation_values/VariationValueCreate.vue";
+import VariationValueUpdate from "@/pages/variation_values/VariationValueUpdate.vue";
 
 
 
@@ -157,6 +160,24 @@ const routes =[
                 name : 'menu_items.update',
                 component : MenuItemUpdate,
                 meta: { title: 'Update Menu Items' }
+            },
+            {
+                path : '/variation-values',
+                name : 'variation_values.index',
+                component : VariationValueIndex,
+                meta: { title: 'List of Variation Values' }
+            },
+            {
+                path : '/variation-values/create',
+                name : 'variation_values.create',
+                component : VariationValueCreate,
+                meta: { title: 'Create Variation Values' }
+            },
+            {
+                path : '/variation-values/:id/update',
+                name : 'variation_values.update',
+                component : VariationValueUpdate,
+                meta: { title: 'Update Variation Values' }
             },
             {
                 path : '/tables',
