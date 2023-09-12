@@ -34,6 +34,9 @@ import SubscriptionPayment from "../pages/subscriptions/SubscriptionPayment.vue"
 import VerifyOTP from "../pages/auth/VerifyOTP.vue";
 import MenuItemDetails from "../pages/menu_items/menu_item_details/MenuItemDetails.vue";
 import Login from "@/pages/auth/Login.vue";
+import IngredientIndex from "@/pages/ingredients/IngredientIndex.vue";
+import IngredientCreate from "@/pages/ingredients/IngredientCreate.vue";
+import IngredientUpdate from "@/pages/ingredients/IngredientUpdate.vue";
 
 
 
@@ -139,6 +142,24 @@ const routes =[
                 name : 'menu.update',
                 component : MenuUpdate,
                 meta: { title: 'Update Menu' }
+            },
+            {
+                path : '/ingredients',
+                name : 'ingredients.index',
+                component : IngredientIndex,
+                meta: { title: 'List of Ingredients' }
+            },
+            {
+                path : '/ingredients/create',
+                name : 'ingredients.create',
+                component : IngredientCreate,
+                meta: { title: 'Create Ingredients' }
+            },
+            {
+                path : '/ingredients/:id/update',
+                name : 'ingredients.update',
+                component : IngredientUpdate,
+                meta: { title: 'Update Ingredients' }
             },
             {
                 path : '/menu-items',

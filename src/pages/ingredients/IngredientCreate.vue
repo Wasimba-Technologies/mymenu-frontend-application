@@ -1,11 +1,48 @@
-<script setup>
-
-</script>
-
 <template>
-
+  <IngredientFormComponent
+      :ingredient-form="ingredientForm"
+      :types="types"
+      :is-loading="isLoading"
+      @submit-ingredient="saveIngredient"
+      form-description="Register your ingredients by filling the form below"
+      btn-message="Register"
+      :errors="errors"
+  />
 </template>
 
-<style scoped>
+<script setup>
+import {inject, onMounted, provide, ref,} from "vue";
+import {ABILITY_TOKEN, useAbility} from "@casl/vue";
+import IngredientFormComponent from "@/pages/ingredients/components/IngredientFormComponent.vue";
+import useIngredients from "@/composables/ingredients";
+import useAuth from "@/composables/auth";
 
-</style>
+const {errors, ingredientForm, isLoading, storeIngredient} = useIngredients()
+
+const types = [
+  {name: "button"},
+  {name: "checkbox"},
+  {name: "radio"}
+]
+
+const saveIngredient = async () => {
+  await storeIngredient({...ingredientForm});
+}
+
+
+provide('isLoading', isLoading)
+
+onMounted(async () => {
+
+  await getAbilities()
+
+  if (!can('menu_items.create')) {
+    await logout()
+  }
+})
+const {logout} = useAuth()
+const ability = inject(ABILITY_TOKEN)
+const { can } = useAbility()
+const {getAbilities} = useAuth()
+
+</script>
