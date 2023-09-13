@@ -154,12 +154,6 @@ import {ref} from "vue";
         emit('submitMenuItem')
     }
 
-    const ingredientsValues = ref(null);
-    const addonsValues = ref(null);
-    const variationsValues = ref(null);
-    const allergensValues = ref(null);
-
-
     // TODO: Hardcoded, need to come from the backend.
     const ingredientOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
     const addonsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
