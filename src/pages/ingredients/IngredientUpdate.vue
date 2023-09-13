@@ -1,7 +1,6 @@
 <template>
   <IngredientFormComponent
       :ingredient-form="ingredient"
-      :types="types"
       :is-loading="isLoading"
       @submit-ingredient="changeIngredient"
       form-description="Update your ingredients by filling the form below"
@@ -18,12 +17,6 @@ import useIngredients from "@/composables/ingredients";
 import useAuth from "@/composables/auth";
 import {useRoute} from "vue-router";
 
-
-const types = [
-  {name: "button"},
-  {name: "checkbox"},
-  {name: "radio"}
-]
 
 
 const {

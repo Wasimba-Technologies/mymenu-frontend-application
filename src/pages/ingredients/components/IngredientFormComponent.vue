@@ -66,9 +66,16 @@
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 let props = defineProps([
-  'ingredientForm', 'errors', 'isLoading', 'types',
+  'ingredientForm', 'errors', 'isLoading',
   'isFetching', 'btnMessage', 'formDescription',
 ])
+
+const types = [
+  {name: "button"},
+  {name: "checkbox"},
+  {name: "radio"}
+]
+
 
 const emit = defineEmits(['submitIngredient'])
 

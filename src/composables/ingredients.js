@@ -23,6 +23,7 @@ export default function useIngredients() {
 
     const getIngredients = async (searchName) => {
         isFetching.value = true
+        searchName = searchName ? searchName : ''
         await axios.get(ingredientsURL.value+'?name='+searchName).then(response =>{
             ingredients.value = response.data.data
 
