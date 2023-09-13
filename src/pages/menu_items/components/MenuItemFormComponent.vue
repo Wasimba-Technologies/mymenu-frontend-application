@@ -135,15 +135,20 @@
 <script setup>
 import LoadingSpinner from "../../../components/LoadingSpinner.vue";
 import Multiselect from 'vue-multiselect'
-import {ref} from "vue";
+import {onMounted} from "vue";
+import useMenus from "@/composables/menus";
 
     let props = defineProps([
-        'menuItemForm', 'errors', 'isLoading',
-        'isFetching', 'imgUrl', 'btnMessage', 'formDescription', 'menus'
+        'menuItemForm', 'errors', 'isLoading', 'imgUrl', 'btnMessage', 'formDescription',
     ])
 
     const emit = defineEmits(['submitMenuItem', 'loadImage'])
 
+   const {menus, getMenus} = useMenus();
+    // const {variationValues, getVariationValues} = useVariationValues()
+    // const {ingredients, getIngredients} = useIngredients()
+    // const {addons, getAddons} = useAddons()
+    // const {allergens, getAllergens} = useAllergens()
 
 
     const loadFile = (event) => {
@@ -154,17 +159,19 @@ import {ref} from "vue";
         emit('submitMenuItem')
     }
 
-    const ingredientsValues = ref(null);
-    const addonsValues = ref(null);
-    const variationsValues = ref(null);
-    const allergensValues = ref(null);
 
-
-    // TODO: Hardcoded, need to come from the backend.
     const ingredientOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
     const addonsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
     const variationsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
     const allergensOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
+
+    onMounted(async () => {
+      await getMenus()
+      // await getIngredients()
+      // await getAddons()
+      // await getVariations()
+      // await getAllergens()
+    })
 
 
 

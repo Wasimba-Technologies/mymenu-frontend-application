@@ -2,7 +2,6 @@
     <BlurredSpinner v-if="isFetching" />
     <MenuItemFormComponent
         :menu-item-form="modified_menu_item"
-        :menus="menus"
         :is-loading="isLoading"
         @submitMenuItem="changeMenuItem"
         :img-url="tempImgUrl"
