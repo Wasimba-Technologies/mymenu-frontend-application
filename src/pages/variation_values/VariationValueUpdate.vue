@@ -1,10 +1,8 @@
 <template>
   <VariationValueFormComponent
-      :variation-value-form-form="variationValue"
-      :types="types"
-      :variations="variations"
-      :is-loading="isLoading"
+      :variation-value-form="variationValue"
       @submit-variation-value="changeVariationValue"
+      :is-loading = "isLoading"
       form-description="Update your variation values by filling the form below"
       btn-message="Register"
       :errors="errors"
@@ -29,13 +27,6 @@ const {
   updateVariationValue,
 } = useVariationValues()
 
-const {variations, getVariations} = useVariations()
-
-const types = [
-  {name: "button"},
-  {name: "checkbox"},
-  {name: "radio"}
-]
 
 
 const route = useRoute()
@@ -47,15 +38,12 @@ const changeVariationValue = async () => {
 
 
 
-provide('isLoading', isLoading)
-
 onMounted(async () => {
   await getAbilities()
 
   if (!can('menu_items.update')) {
     await logout()
   }
-  await getVariations()
   await getVariationValue(route.params.id)
 })
 

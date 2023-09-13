@@ -77,9 +77,15 @@
 <script setup>
 
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
+import useVariationValues from "@/composables/variation_values";
+import {onMounted} from "vue";
+import useVariations from "@/composables/variations";
+
+const {isLoading} = useVariationValues()
+const {variations, getVariations} = useVariations()
 
 let props = defineProps([
-  'variationValueForm', 'errors', 'isLoading', 'types', 'variations',
+  'variationValueForm', 'errors', 'isLoading',
   'isFetching', 'btnMessage', 'formDescription',
 ])
 
@@ -94,6 +100,11 @@ const emit = defineEmits(['submitVariationValue'])
 const submitVariationValue = () =>{
   emit('submitVariationValue')
 }
+
+
+onMounted(async () => {
+  await getVariations()
+})
 
 
 </script>
