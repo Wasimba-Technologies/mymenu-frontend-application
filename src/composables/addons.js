@@ -23,11 +23,11 @@ export default function useAddons() {
 
     const getAddons = async (searchName) => {
         isFetching.value = true
+        searchName =  searchName ? searchName : ''
         await axios.get(addonsURL.value+'?name='+searchName).then(response =>{
-            addons.value = response.data
+            addons.value = response.data.data
 
             //TODO: Uncomment these if the api endpoint adds pagination
-            // addons.value = response.data.data
             // paginationMetaData.value = response.data.meta
             // paginationLinks.value = response.data.links
         }).catch(error =>{
@@ -64,7 +64,7 @@ export default function useAddons() {
                 router.push({name: 'addons.index'})
                 Toast.fire({
                     icon: 'success',
-                    title: response.data.message
+                    title: 'Addon created'
                 })
             }).catch(error => {
                 if (error.response?.data) {

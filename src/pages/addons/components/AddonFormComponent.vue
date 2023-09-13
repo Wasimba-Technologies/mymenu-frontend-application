@@ -26,7 +26,7 @@
                     :class="[errors?.type === undefined ? 'valid-select' : 'invalid-select']">
               <option value="" selected>--Select Type--</option>
               <option v-for="type in types" :value="type.name"
-                      :selected="type.name === ingredientForm.type" :key="type.name">
+                      :selected="type.name === addonForm.type" :key="type.name">
                 {{type.name}}
               </option>
             </select>
@@ -36,7 +36,7 @@
             <div class="relative flex gap-x-3">
               <div class="flex h-6 items-center">
                 <input id="is_incrementing" name="is_incrementing" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-rose-600 focus:ring-rose-600"
-                       v-model="ingredientForm.is_incrementing"/>
+                       v-model="addonForm.is_incrementing"/>
               </div>
               <div class="text-sm leading-6">
                 <label for="is_incrementing" class="font-medium text-gray-900">Is incrementing</label>
@@ -49,7 +49,7 @@
     </div>
     <div class="bg-gray-50 px-4 py-3 text-right sm:px-6 mt-6">
       <button type="submit" class="btn-sm-submit" :class="{'disabled:opacity-25' : isLoading}" :disabled="isLoading">
-        <LoadingSpinner :is-loading="isLoading" />
+        <LoadingSpinner v-if="isLoading" />
         {{btnMessage}}
       </button>
     </div>
@@ -58,10 +58,17 @@
 </template>
 <script setup>
   import LoadingSpinner from "@/components/LoadingSpinner.vue";
+
   let props = defineProps([
-    'addonForm', 'errors', 'isLoading', 'types',
-    'isFetching', 'btnMessage', 'formDescription',
+    'addonForm', 'errors', 'isLoading', 'btnMessage', 'formDescription',
   ])
+
+  const types = [
+    {name: "button"},
+    {name: "checkbox"},
+    {name: "radio"}
+  ]
+
   const emit = defineEmits(['submitIngredient'])
   const submitAddon = () =>{
     emit('submitAddon')

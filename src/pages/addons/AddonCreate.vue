@@ -1,7 +1,6 @@
 <template>
   <AddonFormComponent
       :addon-form="addonForm"
-      :types="types"
       :is-loading="isLoading"
       @submit-addon="saveAddon"
       form-description="Register your addons by filling the form below"
@@ -17,14 +16,10 @@ import useAuth from "@/composables/auth";
 import AddonFormComponent from "@/pages/addons/components/AddonFormComponent.vue";
 import useAddons from "@/composables/addons";
 
-  const {errors, addonForm, isLoading, storeIngredient} = useAddons()
-  const types = [
-    {name: "button"},
-    {name: "checkbox"},
-    {name: "radio"}
-  ]
+  const {errors, addonForm, isLoading, storeAddon} = useAddons()
+
   const saveAddon = async () => {
-    await storeIngredient({...addonForm});
+    await storeAddon({...addonForm});
   }
 
   provide('isLoading', isLoading)

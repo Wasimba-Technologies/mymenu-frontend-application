@@ -1,7 +1,7 @@
 <template>
+  <BlurredSpinner v-if="isFetching" />
   <AddonFormComponent
       :addon-form="addon"
-      :types="types"
       :is-loading="isLoading"
       @submit-addon="changeAddon"
       form-description="Update your addons by filling the form below"
@@ -16,13 +16,8 @@
   import useAuth from "@/composables/auth";
   import {useRoute} from "vue-router";
   import useAddons from "@/composables/addons";
+  import BlurredSpinner from "@/components/BlurredSpinner.vue";
 
-
-  const types = [
-    {name: "button"},
-    {name: "checkbox"},
-    {name: "radio"}
-  ]
 
   const {
     errors,
