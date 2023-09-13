@@ -53,7 +53,7 @@
       </div>
       <div class="bg-gray-50 px-4 py-3 text-right sm:px-6 mt-6">
         <button type="submit" class="btn-sm-submit" :class="{'disabled:opacity-25' : isLoading}" :disabled="isLoading">
-          <LoadingSpinner :is-loading="isLoading" />
+          <LoadingSpinner v-if="isLoading" />
           {{btnMessage}}
         </button>
       </div>
