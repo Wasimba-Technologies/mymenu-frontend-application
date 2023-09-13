@@ -2,32 +2,29 @@ import { reactive, ref} from "vue";
 import router from "../router";
 
 
-export default function useVariationValues() {
-    const variationValues = ref([]);
-    const variationValue = ref({});
+export default function useVariations() {
+    const variations = ref([]);
+    const variation = ref({});
     const errors = ref({})
     const isLoading = ref(false)
     const isFetching = ref(false)
     const paginationMetaData = ref({})
     const paginationLinks = ref({})
-    const ingredientsURL = ref('api/variation_values')
+    const variationsURL = ref('api/variations')
 
-    const variationValueForm = reactive(
+    const variationForm = reactive(
         {
             name: '',
-            price: '',
-            is_incrementing: true,
-            type: 'button',
-            variation_id: ''
         }
     )
 
-    const getVariationValues = async (searchName) => {
+    const getVariations = async (searchName) => {
         isFetching.value = true
         searchName = searchName ? searchName : ''
-        await axios.get(ingredientsURL.value+'?name='+searchName).then(response =>{
-            variationValues.value = response.data.data
+        await axios.get(variationsURL.value+'?name='+searchName).then(response =>{
+            variations.value = response.data.data
 
+            //TODO: Uncomment this to allow pagination.
             // paginationMetaData.value = response.data.meta
             // paginationLinks.value = response.data.links
         }).catch(error =>{
@@ -40,10 +37,10 @@ export default function useVariationValues() {
         )
     }
 
-    const getVariationValue = async (id) => {
+    const getVariation = async (id) => {
         isFetching.value = true
-        await axios.get('/api/variation_values/'+id).then(response =>{
-            variationValue.value = response.data.data
+        await axios.get('/api/variations/'+id).then(response =>{
+            variation.value = response.data.data
         }).catch(error =>{
             Toast.fire({
                 icon: 'error',
@@ -55,13 +52,13 @@ export default function useVariationValues() {
     }
 
 
-    const storeVariationValue= async (data) => {
+    const storeVariation = async (data) => {
         isLoading.value = true;
 
-        await axios.post('/api/variation_values', data)
+        await axios.post('/api/variations', data)
             .then(response => {
-                variationValue.value = response.data.data
-                router.push({name: 'variation_values.index'})
+                variation.value = response.data.data
+                router.push({name: 'variations.index'})
                 Toast.fire({
                     icon: 'success',
                     title: response.data.message
@@ -79,18 +76,18 @@ export default function useVariationValues() {
                 () => isLoading.value = false
             )
     }
-    const updateVariationValue = async (id) => {
+    const updateVariation = async (id) => {
 
         isLoading.value = true
 
-        const data = {...variationValue}
+        const data = {...variation}
 
-        await axios.patch('/api/variation_values/' + id, data)
+        await axios.patch('/api/variations/' + id, data)
             .then(response => {
-                router.push({name: 'variation_values.index'})
+                router.push({name: 'variations.index'})
                 Toast.fire({
                     icon: 'success',
-                    title: 'Value Updated successfully'
+                    title: 'Variation Updated successfully'
                 })
             }).catch(error => {
                 if (error.response?.data) {
@@ -111,14 +108,14 @@ export default function useVariationValues() {
         errors,
         isLoading,
         isFetching,
-        variationValue,
-        variationValues,
+        variation,
+        variations,
+        getVariation,
+        getVariations,
+        variationForm,
+        storeVariation,
+        updateVariation,
         paginationLinks,
-        getVariationValue,
-        variationValueForm,
-        getVariationValues,
-        storeVariationValue,
-        updateVariationValue,
         paginationMetaData,
     }
 

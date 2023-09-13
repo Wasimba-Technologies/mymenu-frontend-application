@@ -2,7 +2,7 @@
   <div class="px-4 sm:px-6 lg:px-8">
     <div class="sm:flex sm:items-center flex-row-reverse">
       <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        <router-link v-if="can('menu_items.create')" to="/variation_values/create"
+        <router-link v-if="can('menu_items.create')" to="/variation-values/create"
                      class="inline-flex items-center justify-center rounded-md border border-transparent
                                          bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700
                                          focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 sm:w-auto">
@@ -35,11 +35,10 @@
               </tr>
               <tr v-for="value in variationValues" :key="value.id">
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                  <div class="font-medium text-gray-900">{{ value.name }}</div>
                   <div class="flex items-center">
                     <div>
                       <div class="font-medium text-gray-900">{{ value?.name }}</div>
-                      <div class="text-gray-500">{{ value?.variation?.name }}</div>
+                      <div class="text-gray-500">{{ value?.variation_name }}</div>
                     </div>
                   </div>
                 </td>

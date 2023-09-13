@@ -18,6 +18,7 @@ import {inject, onMounted, provide} from "vue";
 import {ABILITY_TOKEN, useAbility} from "@casl/vue";
 import useAuth from "@/composables/auth";
 import {useRoute} from "vue-router";
+import useVariations from "@/composables/variations";
 
 
 const {

@@ -13,12 +13,12 @@
               <select id="variation" name="variation" v-model="variationValueForm.variation_id"
                       :class="[errors?.variation_id === undefined ? 'valid-select' : 'invalid-select']">
                 <option value="" selected>--Select Variation--</option>
-                <option v-for="variation in variations" :value="menu.id"
-                        :selected="parseInt(variation.id) === parseInt(variationValueForm.variation)" :key="variation.id">
+                <option v-for="variation in variations" :value="variation.id"
+                        :selected="parseInt(variation.id) === parseInt(variationValueForm.variation_id)" :key="variation.id">
                   {{variation.name}}
                 </option>
               </select>
-              <p class="mt-2 text-sm text-red-600" id="menu-error" v-for="error in errors?.menu_id">{{error}}</p>
+              <p class="mt-2 text-sm text-red-600" id="variation-error" v-for="error in errors?.variation_id">{{error}}</p>
             </div>
 
             <div class="col-span-3 sm:col-span-3">
@@ -66,7 +66,7 @@
       </div>
       <div class="bg-gray-50 px-4 py-3 text-right sm:px-6 mt-6">
         <button type="submit" class="btn-sm-submit" :class="{'disabled:opacity-25' : isLoading}" :disabled="isLoading">
-          <LoadingSpinner :is-loading="isLoading" />
+          <LoadingSpinner v-if="isLoading" />
           {{btnMessage}}
         </button>
       </div>
@@ -82,6 +82,12 @@ let props = defineProps([
   'variationValueForm', 'errors', 'isLoading', 'types', 'variations',
   'isFetching', 'btnMessage', 'formDescription',
 ])
+
+const types = [
+  {name: "button"},
+  {name: "checkbox"},
+  {name: "radio"}
+]
 
 const emit = defineEmits(['submitVariationValue'])
 

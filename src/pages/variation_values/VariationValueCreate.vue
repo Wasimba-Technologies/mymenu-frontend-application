@@ -1,7 +1,6 @@
 <template>
   <VariationValueFormComponent
-      :variation-value-form-form="variationValueForm"
-      :types="types"
+      :variation-value-form="variationValueForm"
       :variations="variations"
       :is-loading="isLoading"
       @submit-variation-value="saveVariationValue"
@@ -16,6 +15,7 @@ import useVariationValues from "@/composables/variation_values";
 import {inject, onMounted, provide} from "vue";
 import {ABILITY_TOKEN, useAbility} from "@casl/vue";
 import useAuth from "@/composables/auth";
+import useVariations from "@/composables/variations";
 
 
 const {
@@ -27,11 +27,7 @@ const {
 
 const {variations, getVariations} = useVariations()
 
-const types = [
-  {name: "button"},
-  {name: "checkbox"},
-  {name: "radio"}
-]
+
 
 const saveVariationValue = async () => {
   await storeVariationValue({...variationValueForm});
