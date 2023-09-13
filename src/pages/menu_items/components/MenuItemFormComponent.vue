@@ -159,7 +159,7 @@ import useMenus from "@/composables/menus";
         emit('submitMenuItem')
     }
 
-
+    // TODO: Hardcoded, need to come from the backend.
     const ingredientOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
     const addonsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
     const variationsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
