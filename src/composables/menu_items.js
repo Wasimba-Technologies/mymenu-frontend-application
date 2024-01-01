@@ -18,7 +18,11 @@ export default function useMenuItems() {
             description: '',
             price: '',
             image: '',
-            menu_id: ''
+            menu_id: '',
+            ingredients: [],
+            addons: [],
+            variations: [],
+            allergens: []
         }
     )
 

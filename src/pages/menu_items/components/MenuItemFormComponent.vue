@@ -28,20 +28,61 @@
                             <p class="mt-2 text-sm text-red-600" id="name-error" v-for="error in errors?.name">{{error}}</p>
                         </div>
 
-                        <div class="col-span-3 sm:col-span-3">
-                            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-                            <input type="number" name="price" id="price"  placeholder="Price" v-model="menuItemForm.price"
-                                   :class="[errors?.price === undefined ? 'valid-input' : 'invalid-input']" required/>
-                            <p class="mt-2 text-sm text-red-600" id="price-error" v-for="error in errors?.price">{{error}}</p>
+                      <div class="col-span-3 sm:col-span-3">
+                        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                        <input type="number" name="price" id="price"  placeholder="Price" v-model="menuItemForm.price"
+                               :class="[errors?.price === undefined ? 'valid-input' : 'invalid-input']" required/>
+                        <p class="mt-2 text-sm text-red-600" id="price-error" v-for="error in errors?.price">{{error}}</p>
+                      </div>
+
+                      <div class="col-span-6 sm:col-span-6">
+                        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <input type="text" name="description" id="description"  placeholder="Description" v-model="menuItemForm.description"
+                               :class="[errors?.description === undefined ? 'valid-input' : 'invalid-input']" required/>
+                        <p class="mt-2 text-sm text-red-600" id="description-error" v-for="error in errors?.description">{{error}}</p>
+                      </div>
+
+                      <div class="col-span-3 sm:col-span-3">
+                            <label for="price" class="block text-sm font-medium text-gray-700">Ingredients</label>
+                        <Multiselect
+                            :options="ingredientOptions"
+                            v-model="menuItemForm.ingredients"
+                            :multiple="true"
+                        >
+                        </Multiselect>
                         </div>
 
 
-                        <div class="col-span-6 sm:col-span-6">
-                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                            <input type="text" name="description" id="description"  placeholder="Description" v-model="menuItemForm.description"
-                                   :class="[errors?.description === undefined ? 'valid-input' : 'invalid-input']" required/>
-                            <p class="mt-2 text-sm text-red-600" id="description-error" v-for="error in errors?.description">{{error}}</p>
-                        </div>
+                      <div class="col-span-3 sm:col-span-3">
+                        <label for="price" class="block text-sm font-medium text-gray-700">Addons</label>
+                        <Multiselect
+                            :options="addonsOptions"
+                            v-model="menuItemForm.addons"
+                            :multiple="true"
+                        >
+                        </Multiselect>
+                      </div>
+
+                      <div class="col-span-3 sm:col-span-3">
+                        <label for="price" class="block text-sm font-medium text-gray-700">Variations</label>
+                        <Multiselect
+                            :options="variationsOptions"
+                            v-model="menuItemForm.variations"
+                            :multiple="true"
+                        >
+                        </Multiselect>
+                      </div>
+
+                      <div class="col-span-3 sm:col-span-3">
+                        <label for="price" class="block text-sm font-medium text-gray-700">Allergens</label>
+                        <Multiselect
+                            :options="allergensOptions"
+                            v-model="menuItemForm.allergens"
+                            :multiple="true"
+                        >
+                        </Multiselect>
+                      </div>
+
 
                         <div class="col-span-2 sm:col-span-2">
                             <label class="block text-sm font-medium text-gray-700">Image</label>
@@ -92,16 +133,22 @@
 </template>
 
 <script setup>
-
 import LoadingSpinner from "../../../components/LoadingSpinner.vue";
+import Multiselect from 'vue-multiselect'
+import {onMounted} from "vue";
+import useMenus from "@/composables/menus";
 
     let props = defineProps([
-        'menuItemForm', 'errors', 'isLoading',
-        'isFetching', 'imgUrl', 'btnMessage', 'formDescription', 'menus'
+        'menuItemForm', 'errors', 'isLoading', 'imgUrl', 'btnMessage', 'formDescription',
     ])
 
     const emit = defineEmits(['submitMenuItem', 'loadImage'])
 
+   const {menus, getMenus} = useMenus();
+    // const {variationValues, getVariationValues} = useVariationValues()
+    // const {ingredients, getIngredients} = useIngredients()
+    // const {addons, getAddons} = useAddons()
+    // const {allergens, getAllergens} = useAllergens()
 
 
     const loadFile = (event) => {
@@ -112,4 +159,45 @@ import LoadingSpinner from "../../../components/LoadingSpinner.vue";
         emit('submitMenuItem')
     }
 
+    // TODO: Hardcoded, need to come from the backend.
+    const ingredientOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
+    const addonsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
+    const variationsOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
+    const allergensOptions = ['Foo', 'Baa', 'Baz', 'Fooz'];
+
+    onMounted(async () => {
+      await getMenus()
+      // await getIngredients()
+      // await getAddons()
+      // await getVariations()
+      // await getAllergens()
+    })
+
+
+
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
+
+<style>
+.multiselect__spinner::after{
+  border-color: #be123c transparent transparent;
+}
+
+.multiselect__tag{
+  background: #be123c;
+}
+
+.multiselect__tag-icon::after{
+  color: white;
+}
+
+.multiselect__option--highlight {
+  background: #be123c;
+}
+
+.multiselect__option--highlight::after{
+  background: #be123c;
+}
+</style>
+

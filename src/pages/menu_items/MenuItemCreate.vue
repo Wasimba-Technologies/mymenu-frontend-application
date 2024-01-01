@@ -1,7 +1,6 @@
 <template>
     <MenuItemFormComponent
         :menu-item-form="menuItemForm"
-        :menus="menus"
         :is-loading="isLoading"
         @submitMenuItem="saveMenuItem"
         :img-url="tempImgUrl"
