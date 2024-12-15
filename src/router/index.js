@@ -34,6 +34,9 @@ import SubscriptionPayment from "../pages/subscriptions/SubscriptionPayment.vue"
 import VerifyOTP from "../pages/auth/VerifyOTP.vue";
 import MenuItemDetails from "../pages/menu_items/menu_item_details/MenuItemDetails.vue";
 import Login from "@/pages/auth/Login.vue";
+import AddonIndex from "@/pages/addons/AddonIndex.vue";
+import AddonCreate from "@/pages/addons/AddonCreate.vue";
+import AddonUpdate from "@/pages/addons/AddonUpdate.vue";
 
 
 
@@ -157,6 +160,24 @@ const routes =[
                 name : 'menu_items.update',
                 component : MenuItemUpdate,
                 meta: { title: 'Update Menu Items' }
+            },
+            {
+                path : '/addons',
+                name : 'addons.index',
+                component : AddonIndex,
+                meta: { title: 'List of Addons' }
+            },
+            {
+                path : '/addons/create',
+                name : 'addons.create',
+                component : AddonCreate,
+                meta: { title: 'Create Addons' }
+            },
+            {
+                path : '/addons/:id/update',
+                name : 'addons.update',
+                component : AddonUpdate,
+                meta: { title: 'Update Addons' }
             },
             {
                 path : '/tables',
